@@ -2,7 +2,7 @@
 var p = require('gulp-load-plugins')();
 
 var src = 'src';
-var appVersion = '0.5.0';
+var appVersion = '0.6.0';
 var output = 'dist';
 var typesSrc = 'typings';
 var tsScriptFiles = [typesSrc + '/**/*.ts', src + '/**/*.ts'];
@@ -24,8 +24,8 @@ var copy = function (source) {
 var compileTS = function () {
     var tsResult = gulp.src(tsScriptFiles)
         .pipe(p.typescript(tsProject))
-        .pipe(p.concat('angular-value-not-in-objects.js'))
         .pipe(p.ngAnnotate())
+        .pipe(p.concat('angular-value-not-in-objects.js'))
         .pipe(gulp.dest(output));
 }
 gulp.task('compileTS', function () {

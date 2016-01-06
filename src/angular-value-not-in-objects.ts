@@ -1,7 +1,8 @@
 ﻿/// <reference path="../typings/tsd.d.ts" />
-
-export class ValueNotInObjects {
-    constructor($parse: angular.IParseService) {
+var module: angular.IModule = angular.module('value-not-in-objects', []);
+module Common {
+    export function ValueNotInObjects($parse: angular.IParseService): angular.IDirective {
+        "ngInject";
         var directive: angular.IDirective = {};
         directive.restrict = 'A';
         directive.require = 'ngModel'
@@ -20,5 +21,6 @@ export class ValueNotInObjects {
             });
         }
         return directive;
-    }
+    };
 };
+module.directive('valueNotInObjects', Common.ValueNotInObjects);
