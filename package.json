@@ -18,6 +18,10 @@
     "merge2": "^0.3.6",
     "typescript": "^1.7.3"
   },
+  "typescript": {
+    "definition": "dist/typings/angular-value-not-in-objects.d.ts"
+  },
+
   "keywords": [
     "find",
     "list",
