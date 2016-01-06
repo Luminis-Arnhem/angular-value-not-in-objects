@@ -1,6 +1,6 @@
 {
   "name": "angular-value-not-in-objects",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "a directive that searches a list of objects to find a match",
   "repository": {
     "type": "git",
@@ -13,6 +13,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-load-plugins": "^1.1.0",
     "gulp-ng-annotate": "^1.1.0",
+    "gulp-replace": "^0.5.4",
     "gulp-typescript": "^2.10.0",
     "gulp-uglify": "^1.2.0",
     "merge2": "^0.3.6",

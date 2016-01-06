@@ -1,4 +1,3 @@
-/// <reference path="../typings/tsd.d.ts" />
 var module = angular.module('value-not-in-objects', []);
 var Common;
 (function (Common) {

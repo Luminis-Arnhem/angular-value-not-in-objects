@@ -3,7 +3,7 @@ var merge = require('merge2');
 var p = require('gulp-load-plugins')();
 
 var src = 'src';
-var appVersion = '0.2.2';
+var appVersion = '0.2.3';
 var output = 'dist';
 var typesSrc = 'typings';
 var tsScriptFiles = [typesSrc + '/**/*.ts', src + '/**/*.ts'];
@@ -24,6 +24,7 @@ var copy = function (source) {
 
 var compileTS = function () {
     var tsResult = gulp.src(tsScriptFiles)
+        .pipe(p.replace('/// <reference path="../typings/tsd.d.ts" />', ''))
         .pipe(p.typescript(tsProject));
     tsResult.dts
         .pipe(gulp.dest(output + '/typings'));
