@@ -1,4 +1,5 @@
-﻿var gulp = require('gulp')
+﻿var gulp = require('gulp');
+var merge = require('merge2');
 var p = require('gulp-load-plugins')();
 
 var src = 'src';
@@ -9,7 +10,7 @@ var tsScriptFiles = [typesSrc + '/**/*.ts', src + '/**/*.ts'];
 var versionFiles = ['./bower.json', './package.json', './tsd.json'];
 
 var tsProject = p.typescript.createProject({
-    declarationFiles: false,
+    declaration: true,
     noExternalResolve: true,
     module: "system",
     target: "ES5",
@@ -23,10 +24,13 @@ var copy = function (source) {
 
 var compileTS = function () {
     var tsResult = gulp.src(tsScriptFiles)
-        .pipe(p.typescript(tsProject))
+        .pipe(p.typescript(tsProject));
+    tsResult.dts
+        .pipe(gulp.dest(output + '/typings'));
+    tsResult.js
         .pipe(p.ngAnnotate())
         .pipe(p.concat('angular-value-not-in-objects.js'))
-        .pipe(gulp.dest(output));
+        .pipe(gulp.dest(output + '/js'));
 }
 gulp.task('compileTS', function () {
     return compileTS();
