@@ -12,6 +12,9 @@
     "angular",
     "form validation"
   ],
+  "typescript": {
+    "definition": "dist/typings/angular-value-not-in-objects.d.ts"
+  },
   "dependencies": {
     "angular": ">=1.2.26"
   },
