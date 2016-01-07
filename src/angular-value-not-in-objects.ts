@@ -1,4 +1,4 @@
-﻿/// <reference path="../typings/tsd.d.ts" />
+﻿/// <reference path="../typings/angularjs/angular.d.ts" />
 var module: angular.IModule = angular.module('value-not-in-objects', []);
 module Common {
     export function ValueNotInObjects($parse: angular.IParseService): angular.IDirective {

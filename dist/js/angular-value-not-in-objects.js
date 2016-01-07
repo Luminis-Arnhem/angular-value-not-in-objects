@@ -1,3 +1,4 @@
+//Angular definition file removed
 var module = angular.module('value-not-in-objects', []);
 var Common;
 (function (Common) {
