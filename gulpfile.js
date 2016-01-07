@@ -24,7 +24,7 @@ var copy = function (source) {
 
 var compileTS = function () {
     var tsResult = gulp.src(tsScriptFiles)
-        .pipe(p.replace('/// <reference path="../typings/angularjs/angular.d.ts" />', '//Angular definition file removed'))
+        .pipe(p.replace(new RegExp('/// <reference path=".*" />', "g"), '//Type definition file removed'))
         .pipe(p.typescript(tsProject));
     tsResult.dts
         .pipe(gulp.dest(output + '/typings'));
