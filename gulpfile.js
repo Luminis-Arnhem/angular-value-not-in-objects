@@ -7,7 +7,7 @@ var appVersion = '0.2.4';
 var output = 'dist';
 var typesSrc = 'typings';
 var tsScriptFiles = [typesSrc + '/**/*.ts', src + '/**/*.ts'];
-var versionFiles = ['./bower.json', './package.json', './tsd.json'];
+var versionFiles = ['./bower.json', './package.json'];
 
 var tsProject = p.typescript.createProject({
     declaration: true,
