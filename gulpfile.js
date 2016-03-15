@@ -3,7 +3,7 @@ var merge = require('merge2');
 var p = require('gulp-load-plugins')();
 
 var src = 'src';
-var appVersion = '0.2.4';
+var appVersion = '0.2.5';
 var output = 'dist';
 var typesSrc = 'typings';
 var tsScriptFiles = [typesSrc + '/**/*.ts', src + '/**/*.ts'];

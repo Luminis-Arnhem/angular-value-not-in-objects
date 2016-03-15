@@ -11,7 +11,8 @@ module Common {
                 var values = $parse(attrs.valueNotInObjects)(scope);
                 var key = attrs.valueNotInObjectsKey;
                 var allow = $parse(attrs.valueNotInObjectsAllowId)(scope);
-                if (values.filter(e => e[key].toString() === viewValue && e.id !== allow).length > 0) {
+                if (values.filter(e => e[key].toString() === viewValue &&
+                    (!allow || e.id !== allow)).length > 0) {
                     ctrl.$setValidity('valueNotInObjects', false);
                     return undefined;
                 } else {
