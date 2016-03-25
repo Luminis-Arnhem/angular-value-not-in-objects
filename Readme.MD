@@ -3,10 +3,12 @@ Include dist/js/angular-value-not-in-objects.js in your project
 
 Optionally add typescript definition file dist/typings/angular-value-not-in-objects.d.ts
 ```javascript
-var app = angular.module('exampleApp', ['http-error-interceptor']);
+var app = angular.module('exampleApp', ['value-not-in-objects']);
 ```
 
 #Features
+
+
 
 
 #Develop

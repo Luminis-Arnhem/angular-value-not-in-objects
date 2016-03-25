@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html ng-app="main">
+<head>
+    <title>Example</title>
+	<meta charset="utf-8" />
+
+    <!-- lib -->
+    <script src="../bower_components/angular/angular.js"></script>
+
+    <!-- App script -->
+    <script src="app.js"></script>
+
+    <!-- this component -->
+    <script src="../dist/js/angular-value-not-in-objects.js"></script>
+
+    <!-- Controllers -->
+    <script src="exampleCtrl.js"></script>
+    <script src="telephone.js"></script>
+</head>
+<body ng-controller="ExampleCtrl as example">
+    <h1>Example of valueNotInObjectsDirective</h1>
+    <p>In this example the 'valueNotInObjectsDirective'-directive will check if the number you're typing is in the Telephones-list. If this is the case a validation error will be shown.</p>
+    <p>The numbers below must be unique.</p>
+    <span ng-bind="example.test"></span>
+    <form name="phonesForm" novalidate>
+        <div ng-repeat="telephone in example.Telephones">
+            <span ng-bind="telephone.Type"></span>: <input name="{{telephone.Type}}" ng-required="true" type="text" ng-model="telephone.Number" value-not-in-objects="example.Telephones" value-not-in-objects-key="Number" />
+        </div>
+
+        <ul>
+            <li ng-repeat="(key, errors) in phonesForm.$error track by $index">
+                <strong>{{ key }}</strong> errors
+                <ul>
+                    <li ng-repeat="e in errors">{{ e.$name }} has an error: <strong>{{ key }}</strong>.</li>
+                </ul>
+            </li>
+        </ul>        
+    </form>
+    <a href="exampleWithAllowedId.html">Another example</a>
+
+</body>
+</html>

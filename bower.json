@@ -1,16 +1,19 @@
 {
   "name": "angular-value-not-in-objects",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "authors": [
-    "frankf <frank.folsche@luminis.eu>"
+    "frankf <frank.folsche@luminis.eu>",
+    "koenb <koen.barmentlo@luminis.eu"
   ],
   "description": "a directive that searches a list of objects to find a match",
-  "main": "angular-value-not-in-objects.js",
+  "main": "dist/js/angular-value-not-in-objects.js",
   "keywords": [
     "find",
     "list",
     "angular",
-    "form validation"
+    "from",
+    "validation",
+    "unique"
   ],
   "typescript": {
     "definition": "dist/typings/angular-value-not-in-objects.d.ts"

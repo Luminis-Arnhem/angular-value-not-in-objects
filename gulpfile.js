@@ -1,13 +1,22 @@
 ﻿var gulp = require('gulp');
-var merge = require('merge2');
 var p = require('gulp-load-plugins')();
 
+var config = require('./gulp.config')();
+
 var src = 'src';
-var appVersion = '0.2.5';
-var output = 'dist';
-var typesSrc = 'typings';
-var tsScriptFiles = [typesSrc + '/**/*.ts', src + '/**/*.ts'];
-var versionFiles = ['./bower.json', './package.json'];
+
+var appVersion = '0.3.0';
+
+//var output = 'dist';
+
+//var outputTypings = config.output + '/typings';
+//var outputJs = config.output + '/js';
+//var outputTs = config.output + '/ts';
+//var typesSrc = 'typings';
+
+//var tsScriptFiles = [config.typesSrc + '/**/*.ts', src + '/ **/*.ts'];
+
+//var versionFiles = ['./bower.json', './package.json'];
 
 var tsProject = p.typescript.createProject({
     declaration: true,
@@ -19,31 +28,61 @@ var tsProject = p.typescript.createProject({
 
 var copy = function (source) {
     return gulp.src(source)
-        .pipe(gulp.dest(output));
+        .pipe(gulp.dest(config.output));
 };
 
 var compileTS = function () {
-    var tsResult = gulp.src(tsScriptFiles)
+
+    var tsFilter = p.filter('src/**/*.ts', { restore: true })
+
+    var tsResult = gulp.src(config.tsScriptFiles)
+
         .pipe(p.replace(new RegExp('/// <reference path=".*" />', "g"), '//Type definition file removed'))
+        .pipe(tsFilter)
+        .pipe(p.license('MIT', { tiny: false, organization: 'Luminis' }))
+        .pipe(gulp.dest('./dist/ts/'))
+        .pipe(tsFilter.restore)
         .pipe(p.typescript(tsProject));
     tsResult.dts
-        .pipe(gulp.dest(output + '/typings'));
+        .pipe(gulp.dest(config.outputTypings));
     tsResult.js
         .pipe(p.ngAnnotate())
-        .pipe(p.concat('angular-value-not-in-objects.js'))
-        .pipe(gulp.dest(output + '/js'));
+        .pipe(p.concat('angular-value-not-in-objects.js'))       
+        .pipe(gulp.dest(config.outputJs))
+        .pipe(p.uglify({
+            preserveComments: 'license'
+        }))
+        .pipe(p.rename(function (path) {
+            path.basename += ".min";
+        }))
+        .pipe(gulp.dest('./dist/js/'));
 }
+
 gulp.task('compileTS', function () {
     return compileTS();
 });
+
 gulp.task('clean', function () {
-    return gulp.src([output], { read: false })
+    return gulp.src([config.output], { read: false })
 		.pipe(p.clean());
 });
 gulp.task('setVersion', function () {
-    gulp.src(versionFiles)
+    gulp.src(config.versionFiles)
         .pipe(p.bump({ version: appVersion }))
         .pipe(gulp.dest('./'));
+});
+
+gulp.task('clean-example', function () {
+    gulp.src('example/**/*.js')
+        .pipe(p.clean());
+});
+
+gulp.task('compile-example', ['clean-example'], function () {
+    var tsResult = gulp.src(['example/**/*.ts', 'typings/**/*.d.ts'])
+        .pipe(p.typescript(tsProject));
+        tsResult.js
+        .pipe(p.ngAnnotate())
+        .pipe(gulp.dest('example'));
 });
 
 gulp.task('default', ['clean', 'setVersion'], function () {
