@@ -3,21 +3,6 @@ var p = require('gulp-load-plugins')();
 
 var config = require('./gulp.config')();
 
-var src = 'src';
-
-var appVersion = '0.3.0';
-
-//var output = 'dist';
-
-//var outputTypings = config.output + '/typings';
-//var outputJs = config.output + '/js';
-//var outputTs = config.output + '/ts';
-//var typesSrc = 'typings';
-
-//var tsScriptFiles = [config.typesSrc + '/**/*.ts', src + '/ **/*.ts'];
-
-//var versionFiles = ['./bower.json', './package.json'];
-
 var tsProject = p.typescript.createProject({
     declaration: true,
     noExternalResolve: true,
@@ -68,7 +53,7 @@ gulp.task('clean', function () {
 });
 gulp.task('setVersion', function () {
     gulp.src(config.versionFiles)
-        .pipe(p.bump({ version: appVersion }))
+        .pipe(p.bump({ version: config.appVersion }))
         .pipe(gulp.dest('./'));
 });
 

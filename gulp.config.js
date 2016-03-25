@@ -13,7 +13,6 @@
     output: output,
     src: src,
     appVersion: appVersion,
-    output: output,
     outputTypings: outputTypings,
     outputJs: outputJs,
     outputTs: outputTs,

@@ -1,4 +1,6 @@
 /// <reference path="telephone.ts" />
+/// <reference path="../typings/tsd.d.ts" />
+/// <reference path="app.ts" />
 var app;
 (function (app) {
     var ExampleCtrl = (function () {

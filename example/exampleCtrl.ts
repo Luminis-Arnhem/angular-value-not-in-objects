@@ -1,4 +1,7 @@
 ﻿/// <reference path="telephone.ts" />
+/// <reference path="../typings/tsd.d.ts" />
+/// <reference path="app.ts" />
+
 namespace app {
     class ExampleCtrl {
         Telephones: Telephone[] = Array<Telephone>();
