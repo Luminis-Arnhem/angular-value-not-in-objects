@@ -1,9 +1,9 @@
 {
   "name": "angular-value-not-in-objects",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "authors": [
     "frankf <frank.folsche@luminis.eu>",
-    "koenb <koen.barmentlo@luminis.eu"
+    "koenb <koen.barmentlo@luminis.eu>"
   ],
   "description": "a directive that searches a list of objects to find a match",
   "main": "dist/js/angular-value-not-in-objects.js",
@@ -26,7 +26,8 @@
     "bower_components",
     "example",
     "src",
-    "typings"
+    "typings",
+    "!dist/typings"
   ],
   "license": "MIT",
   "homepage": ""

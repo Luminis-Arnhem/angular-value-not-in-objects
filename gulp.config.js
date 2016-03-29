@@ -11,7 +11,6 @@
   var config = {
     output: output,
     src: src,
-    appVersion: appVersion,
     outputTypings: outputTypings,
     outputJs: outputJs,
     outputTs: outputTs,
