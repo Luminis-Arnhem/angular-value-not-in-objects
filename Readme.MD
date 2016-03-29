@@ -29,6 +29,15 @@ In the terminal navigate to your project folder and execute the following comman
 
 Reference '/bower_components/angular-value-not-in-objects/dist/angular-value-not-in-objects.js' in your index.html file.
 
+For TypeScript projects:
+
+If you haven't installed TypeScript Definition Manager, install it.
+http://definitelytyped.org/tsd/
+
+If you have not executed tsd init, execute 'tsd init' in the root folder of your project.
+
+Execute tsd link in the root folder of your project.
+
 #Develop
 npm install
 
