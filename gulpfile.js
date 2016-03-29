@@ -53,7 +53,7 @@ gulp.task('clean', function () {
 });
 gulp.task('setVersion', function () {
     gulp.src(config.versionFiles)
-        .pipe(p.bump({ version: config.appVersion }))
+        .pipe(p.bump())
         .pipe(gulp.dest('./'));
 });
 

@@ -1,5 +1,5 @@
-﻿/// <reference path="telephone.ts" />
-/// <reference path="../typings/tsd.d.ts" />
+﻿/// <reference path="../typings/tsd.d.ts" />
+/// <reference path="telephone.ts" />
 /// <reference path="app.ts" />
 
 namespace app {

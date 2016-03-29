@@ -1,6 +1,5 @@
 ﻿module.exports = function () {
   var src = 'src';
-  var appVersion = '0.3.0';
   var output = 'dist';
   var outputTypings = output + '/typings';
   var outputJs = output + '/js';
