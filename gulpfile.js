@@ -22,7 +22,6 @@ var compileTS = function () {
     var tsFilter = p.filter('src/**/*.ts', { restore: true })
 
     var tsResult = gulp.src(config.tsScriptFiles)
-
         .pipe(p.replace(new RegExp('/// <reference path=".*" />', "g"), '//Type definition file removed'))
         .pipe(tsFilter)
         .pipe(p.license('MIT', { tiny: false, organization: 'Luminis' }))
@@ -33,7 +32,7 @@ var compileTS = function () {
         .pipe(gulp.dest(config.outputTypings));
     tsResult.js
         .pipe(p.ngAnnotate())
-        .pipe(p.concat('angular-value-not-in-objects.js'))       
+        .pipe(p.concat('angular-value-not-in-objects.js'))
         .pipe(gulp.dest(config.outputJs))
         .pipe(p.uglify({
             preserveComments: 'license'

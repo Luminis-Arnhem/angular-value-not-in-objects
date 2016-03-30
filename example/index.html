@@ -24,7 +24,7 @@
     <span ng-bind="example.test"></span>
     <form name="phonesForm" novalidate>
         <div ng-repeat="telephone in example.Telephones">
-            <span ng-bind="telephone.Type"></span>: <input name="{{telephone.Type}}" ng-required="true" type="text" ng-model="telephone.Number" value-not-in-objects="example.Telephones" value-not-in-objects-key="Number" />
+            <span ng-bind="telephone.type"></span>: <input name="{{telephone.type}}" ng-required="true" type="text" ng-model="telephone.number" value-not-in-objects="example.Telephones" value-not-in-objects-key="number" />
         </div>
 
         <ul>

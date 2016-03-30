@@ -23,12 +23,12 @@
     <p>The numbers below must be unique.</p>
     <span ng-bind="example.test"></span>
     <div ng-repeat="telephone in example.Telephones">
-        <span ng-bind="telephone.Type"></span>: <span ng-bind="telephone.Number"></span> <a href="#" ng-click="example.edit(telephone.id)">edit</a>
+        <span ng-bind="telephone.type"></span>: <span ng-bind="telephone.number"></span> <a href="#" ng-click="example.edit(telephone.id)">edit</a>
     </div>
     <a href="index.html">Back</a>
     <hr />
     <form ng-hide="example.overlayHidden" name="phonesForm" novalidate>
-        <input type="text" name="phoneNumber" ng-model="example.currentTelephone.Number" value-not-in-objects="example.Telephones" value-not-in-objects-key="Number" value-not-in-objects-allow-id="{{example.currentTelephone.id}}" ng-required="true" />
+        <input type="text" name="phoneNumber" ng-model="example.currentTelephone.number" value-not-in-objects="example.Telephones" value-not-in-objects-key="number" value-not-in-objects-allow-id="{{example.currentTelephone.id}}" ng-required="true" />
         <ul>
             <li ng-repeat="(key, errors) in phonesForm.$error track by $index">
                 <strong>{{ key }}</strong> errors
