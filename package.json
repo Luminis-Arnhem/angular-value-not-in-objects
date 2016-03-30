@@ -1,6 +1,6 @@
 {
   "name": "angular-value-not-in-objects",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "a directive that searches a list of objects to find a match",
   "repository": {
     "type": "git",
@@ -19,7 +19,10 @@
     "gulp-replace": "^0.5.4",
     "gulp-typescript": "^2.10.0",
     "gulp-uglify": "^1.5.3",
-    "typescript": "^1.7.3"
+    "gulp-util": "^3.0.7",
+    "print": "0.0.0",
+    "typescript": "^1.7.3",
+    "yargs": "^4.3.2"
   },
   "typescript": {
     "definition": "dist/typings/angular-value-not-in-objects.d.ts"
