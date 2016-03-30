@@ -1,6 +1,6 @@
 {
   "name": "angular-value-not-in-objects",
-  "version": "0.7.5",
+  "version": "1.0.0",
   "description": "a directive that searches a list of objects to find a match",
   "repository": {
     "type": "git",
