@@ -24,6 +24,15 @@ The 'value-not-in-objects-allow-id' is optional. When you use the 'value-not-in-
 
 The object with id 'someId' will be ignored during validation.
 
+```html
+<input value-not-in-objects="example.List" value-not-in-objects-key="PropertyName" value-not-in-objects-allow-id="someId" value-not-in-objects-allow-property="key" ng-model="Value" />
+```
+This example is almost the same  as the previous one but this example introduces the 'value-not-in-objects-allow-property'-attribute.
+
+In this example every object in example.list should have a property named key.
+
+The key property now has the same function as the id in the previous example.
+
 #Install
 In the terminal navigate to your project folder and execute the following command: "bower install angular-value-not-in-objects".
 

@@ -1,6 +1,6 @@
 ﻿/// <reference path="telephone.ts" />
 /// <reference path="../typings/tsd.d.ts" />
-/// <reference path="../typings/tsd.d.ts" />
+/// <reference path="app.ts" />
 
 namespace app {
     class ExampleWithAllowedIdCtrl {
@@ -28,8 +28,9 @@ namespace app {
                     this.currentTelephone = angular.copy(telephone);
                     return;
                 }
-            });
+            });           
         };
+
         closeOverlay() {
             this.overlayHidden = true;
         };

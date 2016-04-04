@@ -33,9 +33,13 @@ var Common;
             ctrl.$parsers.unshift(function (viewValue) {
                 var values = $parse(attrs.valueNotInObjects)(scope);
                 var key = attrs.valueNotInObjectsKey;
+                var allowPropertyName = attrs.valueNotInObjectsAllowProperty;
+                if (allowPropertyName === undefined || allowPropertyName.length === 0) {
+                    allowPropertyName = "id";
+                }
                 var allow = $parse(attrs.valueNotInObjectsAllowId)(scope);
                 if (values.filter(function (e) { return e[key] !== undefined && e[key].toString() === viewValue &&
-                    (!allow || e.id !== allow); }).length > 0) {
+                    (!allow || e[allowPropertyName] !== allow); }).length > 0) {
                     ctrl.$setValidity('valueNotInObjects', false);
                     return undefined;
                 }

@@ -53,11 +53,6 @@ gulp.task('clean', function () {
 		.pipe(p.clean());
 });
 
-gulp.task('commit', function () {
-    return gulp.src(config.output + '/**/*')
-      .pipe(p.git.commit('initial commit'));
-});
-
 /**
  * Bump the version
  * --type=pre will bump the prerelease version *.*.*-x
@@ -86,7 +81,6 @@ gulp.task('bump', function () {
             .pipe(gulp.dest('./'))
         gulp
             .src(config.output + './*.*')
-            .pipe(p.plumber())
             .pipe(p.git.add({ args: '.', quiet: true }))
             .pipe(p.git.commit(msg));
     }

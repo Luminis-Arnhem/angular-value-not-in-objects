@@ -21,7 +21,6 @@
     <h1>Example of valueNotInObjectsDirective</h1>
     <p>In this example the 'valueNotInObjectsDirective'-directive will check if the number you're typing is in the Telephones-list. If this is the case a validation error will be shown.</p>
     <p>The numbers below must be unique.</p>
-    <span ng-bind="example.test"></span>
     <form name="phonesForm" novalidate>
         <div ng-repeat="telephone in example.Telephones">
             <span ng-bind="telephone.type"></span>: <input name="{{telephone.type}}" ng-required="true" type="text" ng-model="telephone.number" value-not-in-objects="example.Telephones" value-not-in-objects-key="number" />
@@ -36,7 +35,8 @@
             </li>
         </ul>        
     </form>
-    <a href="exampleWithAllowedId.html">Another example</a>
-
+    <a href="exampleWithAllowedId.html">Example 2</a>
+    <br />
+    <a href="exampleWithConfigurableAllowedProperty.html">Example 3</a>
 </body>
 </html>

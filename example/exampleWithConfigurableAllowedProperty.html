@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html ng-app="main">
+<head>
+    <title>Example</title>
+    <meta charset="utf-8" />
+
+    <!-- lib -->
+    <script src="../bower_components/angular/angular.js"></script>
+
+    <!-- App script -->
+    <script src="app.js"></script>
+
+    <!-- this component -->
+    <script src="../dist/js/angular-value-not-in-objects.js"></script>
+
+    <!-- Controllers -->
+    <script src="exampleWithConfigurableAllowedPropertyCtrl.js"></script>
+    <script src="emailaddress.js"></script>
+</head>
+<body ng-controller="ExampleWithConfigurableAllowedPropertyCtrl as example">
+    <h1>Example of valueNotInObjectsDirective with allowed propertyvalue</h1>
+    <p>This example also contains the 'value-not-in-objects-allow-id'-attribute. You can use this attribute when you copied an object from the list. The name id is now configurable. In this example it is changed to key. Key must be a number</p>
+    <p>The email addresses below must be unique.</p>
+    <div ng-repeat="emailAddress in example.EmailAddresses">
+        <span ng-bind="emailAddress.type"></span>: <span ng-bind="emailAddress.emailAddress"></span> <a href="#" ng-click="example.edit(emailAddress.key)">edit</a>
+    </div>
+    <a href="index.html">Back</a>
+    <hr />
+    <form ng-hide="example.overlayHidden" name="emailAddressesForm" novalidate>
+        <input type="text" name="emailAddress" ng-model="example.currentEmailAddress.emailAddress" value-not-in-objects="example.EmailAddresses" value-not-in-objects-key="emailAddress" value-not-in-objects-allow-id="{{example.currentEmailAddress.key}}" value-not-in-objects-allow-property="key" ng-required="true" />
+        <ul>
+            <li ng-repeat="(key, errors) in emailAddressesForm.$error track by $index">
+                <strong>{{ key }}</strong> errors
+                <ul>
+                    <li ng-repeat="e in errors">{{ e.$name }} has an error: <strong>{{ key }}</strong>.</li>
+                </ul>
+            </li>
+        </ul>
+        <a href="#" ng-click="example.closeOverlay()">Close</a>
+    </form>
+</body>
+</html>

@@ -19,9 +19,8 @@
 </head>
 <body ng-controller="ExampleWithAllowedIdCtrl as example">
     <h1>Example of valueNotInObjectsDirective with allowed id</h1>
-    <p>This example also contains the 'value-not-in-objects-allow-id'-attribute. You can use this attribute when you copied an object from the list. When the directive is checking if the value is not in the list, it will ignore the object with the id in the 'value-not-in-objects-allow-id'-attribute. The objects must contain an 'id' property.</p>
+    <p>This example also contains the 'value-not-in-objects-allow-id'-attribute. You can use this attribute when you copied an object from the list. When the directive is checking if the value is not in the list, it will ignore the object with the id in the 'value-not-in-objects-allow-id'-attribute. The objects must contain an 'id' property because there is no value-not-in-objects-allow-property (see example 3). id must be a number.</p>
     <p>The numbers below must be unique.</p>
-    <span ng-bind="example.test"></span>
     <div ng-repeat="telephone in example.Telephones">
         <span ng-bind="telephone.type"></span>: <span ng-bind="telephone.number"></span> <a href="#" ng-click="example.edit(telephone.id)">edit</a>
     </div>
