@@ -41,6 +41,7 @@ var compileTS = function () {
             path.basename += ".min";
         }))
         .pipe(gulp.dest('./dist/js/'));
+    gulp.start('bump');
 }
 
 gulp.task('compileTS', function () {
@@ -50,6 +51,11 @@ gulp.task('compileTS', function () {
 gulp.task('clean', function () {
     return gulp.src([config.output], { read: false })
 		.pipe(p.clean());
+});
+
+gulp.task('commit', function () {
+    return gulp.src(config.output + '/**/*')
+      .pipe(p.git.commit('initial commit'));
 });
 
 /**
@@ -74,10 +80,15 @@ gulp.task('bump', function () {
             msg += ' for a ' + type;
         }
         p.util.log(p.util.colors.blue(msg));
-        return gulp
+       gulp
             .src(config.versionFiles)
             .pipe(p.bump(options))
-            .pipe(gulp.dest('./'));
+            .pipe(gulp.dest('./'))
+        gulp
+            .src(config.output + './*.*')
+            .pipe(p.plumber())
+            .pipe(p.git.add({ args: '.', quiet: true }))
+            .pipe(p.git.commit(msg));
     }
 });
 
@@ -94,6 +105,6 @@ gulp.task('compile-example', ['clean-example'], function () {
         .pipe(gulp.dest('example'));
 });
 
-gulp.task('default', ['clean', 'bump'], function () {
+gulp.task('default', ['clean'], function () {
     return gulp.start('compileTS');
 });
