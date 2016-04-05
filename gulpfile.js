@@ -81,7 +81,9 @@ gulp.task('bump', function () {
             .pipe(p.bump(options))
             .pipe(gulp.dest('./'))
         var currentVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-        
+        if (msg === undefined) {
+            msg = "-";
+        }
         gulp
             .src(config.output + './*.*')
             .pipe(p.git.add({ args: '.', quiet: true }))
