@@ -12,7 +12,6 @@ module Common {
                 var key = attrs.valueNotInObjectsKey;
                 var allowPropertyName = attrs.valueNotInObjectsAllowKey;
                 var allow = attrs.valueNotInObjectsAllowValue;
-                console.log(allow);
                 if (values.filter(e => e[key] !== undefined && e[key].toString() === viewValue &&
                     (!allow || e[allowPropertyName] !== allow)).length > 0) {
                     ctrl.$setValidity('valueNotInObjects', false);
