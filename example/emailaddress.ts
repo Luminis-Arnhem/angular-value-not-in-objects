@@ -2,7 +2,7 @@
 
 namespace app {
     export class EmailAddress {
-        public key: number;
+        public key: string;
         public emailAddress: string;
         public type: string;
     }

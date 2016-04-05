@@ -1,6 +1,7 @@
 ﻿var gulp = require('gulp');
 var args = require('yargs').argv;
 var p = require('gulp-load-plugins')();
+var fs = require('graceful-fs');
 
 var config = require('./gulp.config')();
 
@@ -75,14 +76,19 @@ gulp.task('bump', function () {
             msg += ' for a ' + type;
         }
         p.util.log(p.util.colors.blue(msg));
-       gulp
+        gulp
             .src(config.versionFiles)
             .pipe(p.bump(options))
             .pipe(gulp.dest('./'))
+        var currentVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
+        
         gulp
             .src(config.output + './*.*')
             .pipe(p.git.add({ args: '.', quiet: true }))
-            .pipe(p.git.commit(msg));
+            .pipe(p.git.commit(msg))
+            .pipe(p.git.tag('v' + currentVersion, '', function(err) {
+                if (err) throw err;
+            }));
     }
 });
 

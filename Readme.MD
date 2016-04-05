@@ -20,18 +20,18 @@ If you're using typescript you should include this package in your build process
 
 This directive gives a validation error when 'example.List' contains an object where the property with 'PropertyName' as name is equal to the value in ng-model. 
 
-The 'value-not-in-objects-allow-id' is optional. When you use the 'value-not-in-objects-allow-id'-attribute every object in 'example.List' should have a property called id. 
-
-The object with id 'someId' will be ignored during validation.
-
 ```html
-<input value-not-in-objects="example.List" value-not-in-objects-key="PropertyName" value-not-in-objects-allow-id="someId" value-not-in-objects-allow-property="key" ng-model="Value" />
+<input value-not-in-objects="example.List" value-not-in-objects-key="PropertyName" value-not-in-objects-allow-value="someId" value-not-in-objects-allow-key="key" ng-model="Value" />
 ```
-This example is almost the same  as the previous one but this example introduces the 'value-not-in-objects-allow-property'-attribute.
+This example also contains the value-not-in-objects-allow-value and value-not-in-objects-allow-key-attributes. You need these attributes when you copied an object from the list.
 
-In this example every object in example.list should have a property named key.
+value-not-in-objects-allow-key defines a property-name of a property in the list of objects.
 
-The key property now has the same function as the id in the previous example.
+value-not-in-objects-allow-value defines a value that is or could be the value of the property defined in value-not-in-objects-allow-key.
+
+The object with the value defined in value-not-in-objects-allow-value, in the property with the name defined in value-not-in-objects-allow-key, will be ignored during validation.
+
+See the example folder for a complete example.
 
 #Install
 In the terminal navigate to your project folder and execute the following command: "bower install angular-value-not-in-objects".

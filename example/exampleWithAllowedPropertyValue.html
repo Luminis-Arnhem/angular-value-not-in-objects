@@ -14,12 +14,21 @@
     <script src="../dist/js/angular-value-not-in-objects.js"></script>
 
     <!-- Controllers -->
-    <script src="exampleWithConfigurableAllowedPropertyCtrl.js"></script>
+    <script src="exampleWithAllowedPropertyValueCtrl.js"></script>
     <script src="emailaddress.js"></script>
 </head>
 <body ng-controller="ExampleWithConfigurableAllowedPropertyCtrl as example">
     <h1>Example of valueNotInObjectsDirective with allowed propertyvalue</h1>
-    <p>This example also contains the 'value-not-in-objects-allow-id'-attribute. You can use this attribute when you copied an object from the list. The name id is now configurable. In this example it is changed to key. Key must be a number</p>
+    <p>
+        This example also contains the <i>value-not-in-objects-allow-value</i> and <i>value-not-in-objects-allow-key</i>-attributes. You need these attributes when you copied an object from the list. 
+    </p>
+    <p>
+        <i>value-not-in-objects-allow-key</i> defines a property-name of a property in the list of objects.
+    </p>
+        <i>value-not-in-objects-allow-value</i> defines a value that is or could be the value of the property defined in value-not-in-objects-allow-key.
+    <p>
+        The object with the value defined in <i>value-not-in-objects-allow-value</i>, in the property with the name defined in <i>value-not-in-objects-allow-key</i>, will be ignored during validation.
+    </p>
     <p>The email addresses below must be unique.</p>
     <div ng-repeat="emailAddress in example.EmailAddresses">
         <span ng-bind="emailAddress.type"></span>: <span ng-bind="emailAddress.emailAddress"></span> <a href="#" ng-click="example.edit(emailAddress.key)">edit</a>
@@ -27,7 +36,7 @@
     <a href="index.html">Back</a>
     <hr />
     <form ng-hide="example.overlayHidden" name="emailAddressesForm" novalidate>
-        <input type="text" name="emailAddress" ng-model="example.currentEmailAddress.emailAddress" value-not-in-objects="example.EmailAddresses" value-not-in-objects-key="emailAddress" value-not-in-objects-allow-id="{{example.currentEmailAddress.key}}" value-not-in-objects-allow-property="key" ng-required="true" />
+        <input type="text" name="emailAddress" ng-model="example.currentEmailAddress.emailAddress" value-not-in-objects="example.EmailAddresses" value-not-in-objects-key="emailAddress" value-not-in-objects-allow-value="{{example.currentEmailAddress.key}}" value-not-in-objects-allow-key="key" ng-required="true" />
         <ul>
             <li ng-repeat="(key, errors) in emailAddressesForm.$error track by $index">
                 <strong>{{ key }}</strong> errors
