@@ -62,7 +62,7 @@ gulp.task('clean', function () {
  * --type=major will bump the major version x.*.*
  * --appVersion=1.2.3 will bump to a specific version and ignore other flags
  */
-gulp.task('bump', function () {
+gulp.task('bump', ['compileTS'], function () {
     var msg = 'Bumping versions';
     var type = args.type;
     var version = args.appVersion;
@@ -80,15 +80,7 @@ gulp.task('bump', function () {
             .src(config.versionFiles)
             .pipe(p.bump(options))
             .pipe(gulp.dest('./'))
-        var currentVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-        
-        gulp
-            .src(config.output + './*.*')
-            .pipe(p.git.add({ args: '.', quiet: true }))
-            .pipe(p.git.commit(msg))
-            .pipe(p.git.tag('v' + currentVersion, '', function(err) {
-                if (err) throw err;
-            }));
+
     }
 });
 
@@ -103,6 +95,21 @@ gulp.task('compile-example', ['clean-example'], function () {
         tsResult.js
         .pipe(p.ngAnnotate())
         .pipe(gulp.dest('example'));
+});
+
+gulp.task('release-new-version', ['bump'], function () {
+    var newVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
+    var msg = 'Bumped to new version: ' + newVersion;
+    gulp
+        .src(['./*', '!bower_components', '!node_modules', '!typings'])
+        .pipe(p.git.add({ args: '', quiet: false }))
+        .pipe(p.git.commit(msg))
+        .pipe(p.git.tag('v' + newVersion, 'New version', function (err) {
+            if (err) {
+                console.log(err);
+                throw err;
+            }
+        }));
 });
 
 gulp.task('default', ['clean'], function () {
