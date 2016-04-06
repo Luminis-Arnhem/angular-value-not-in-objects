@@ -100,6 +100,7 @@ gulp.task('compile-example', ['clean-example'], function () {
 gulp.task('release-new-version', ['bump'], function () {
     var newVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
     var msg = 'Bumped to new version: ' + newVersion;
+    /*
     gulp
         .src(['./*', '!bower_components', '!node_modules', '!typings'])
         .pipe(p.git.add({ args: '', quiet: false }))
@@ -109,7 +110,7 @@ gulp.task('release-new-version', ['bump'], function () {
                 console.log(err);
                 throw err;
             }
-        }));
+        }));*/
 });
 
 gulp.task('default', ['clean'], function () {
