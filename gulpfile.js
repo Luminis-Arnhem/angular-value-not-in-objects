@@ -80,7 +80,10 @@ gulp.task('bump', ['compileTS'], function () {
             .src(config.versionFiles)
             .pipe(p.bump(options))
             .pipe(gulp.dest('./'))
-
+            .pipe(p.git.commit('bumps package version'))
+            .pipe(p.filter('package.json'))
+            // **tag it in the repository**
+            .pipe(p.tagVersion());
     }
 });
 
@@ -95,22 +98,6 @@ gulp.task('compile-example', ['clean-example'], function () {
         tsResult.js
         .pipe(p.ngAnnotate())
         .pipe(gulp.dest('example'));
-});
-
-gulp.task('release-new-version', ['bump'], function () {
-    var newVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-    var msg = 'Bumped to new version: ' + newVersion;
-    /*
-    gulp
-        .src(['./*', '!bower_components', '!node_modules', '!typings'])
-        .pipe(p.git.add({ args: '', quiet: false }))
-        .pipe(p.git.commit(msg))
-        .pipe(p.git.tag('v' + newVersion, 'New version', function (err) {
-            if (err) {
-                console.log(err);
-                throw err;
-            }
-        }));*/
 });
 
 gulp.task('default', ['clean'], function () {
