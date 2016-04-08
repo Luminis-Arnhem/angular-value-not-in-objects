@@ -42,7 +42,6 @@ var compileTS = function () {
             path.basename += ".min";
         }))
         .pipe(gulp.dest('./dist/js/'));
-    gulp.start('bump');
 }
 
 gulp.task('compileTS', function () {
